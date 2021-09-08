@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'formstyle.css' %}"/>
+</head>
+<body style="background: '#5c9b98';">
+<div class="wrapper">
+
+    <div class="form">
+        <h3 class="title">Login</h3>
+        
+        <form method="post">
+            {% csrf_token %}
+            {% if message %}
+                <div class="alert alert-{{class}}">
+                    {{message}}
+                </div>
+            {% endif %}
+            <div class="field">
+                <input type="text" placeholder="" name="email" id="">
+                <label>Email ID</label>
+            </div>
+            <div class="field">
+                <input type="password" placeholder="" name="password" id="">
+                <label>Password</label>
+            </div>
+            <div class="signup-link">
+            Don't have an account? <a href="{% url 'register' %}">Sign up</a></div>
+            <div class="field">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+
+</div>
+{% block content %}
+        
+{% endblock %}
+</body>
+</html>
+
+
+

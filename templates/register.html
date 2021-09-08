@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'formstyle.css' %}"/>
+    <link rel="icon" href="{% static 'img/asf.png' %}" sizes="16x16" type="image/png">
+		<title>Alumni Student Mentorship Program | SARC</title>
+    <style>
+    #department{
+             height: 50px;
+  width: 100%;
+  outline: none;
+  font-size: 17px;
+  padding-left: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 25px;
+  margin-top:20px;
+    }
+    </style>
+</head>
+<body >
+<div class="wrapper">
+    <div class="form">
+        <h3 class="title">Register</h3>
+        <form method="post" action="#">
+            {% csrf_token %}
+
+            {% if message %}
+            <div class="alert alert-{{class}}">
+                {{message}}
+            </div>
+            {% endif %}
+
+            <div class="field">
+                    <input type="text" name="email" placeholder="" required>
+                    <label>Email ID*</label>
+            </div>
+            <div class="field">
+                    <input type="text" name="name" placeholder="" required>
+                    <label>Name*</label>
+            </div>
+            <div class="field">
+                    <input type="text" name="rollno" placeholder="" required>
+                    <label>Roll Number*</label>
+            </div>
+            
+                    <select name="department" id="department">
+                        <option selected style="font-family: 'helvetica','Times New Roman';">Department*</option>
+                    <option value="Aerospace">Aerospace</option>
+                    <option value="BSBE">BSBE</option>
+                    <option value="Chemical">Chemical</option>
+                    <option value="Civil">Civil</option>
+                    <option value="CSE">CSE</option>
+                    <option value="Earth Science">Earth Science</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Energy">Energy</option>
+                    <option value="ESED">ESED</option>
+                    <option value="HSS">HSS</option>
+                    <option value="IEOR">IEOR</option>
+                    <option value="MEMS">MEMS</option>
+                    <option value="Mechanical">Mechanical</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Physics">Physics/EP</option>
+                    <option value="Management">School of Management</option>
+
+                    <option value="Other">Other</option>
+            </select>
+            
+            
+             <select name="degree" id="department">
+                        <option selected>Degree*</option>
+                    <option value="btech">B.Tech</option>
+                    <option value="bs">BS</option>
+                    <option value="mtech">M.Tech</option>
+                    <option value="DD">Dual Degree</option>
+                    <option value="msc">M.Sc</option>
+                    <option value="phd">PhD</option>
+                    <option value="other">Other</option>
+            </select>
+            <div class="field">
+                    <input type="text" name="contact" placeholder="" required>
+                    <label>Contact Number*</label>
+            </div>
+            <div class="field">
+                    <input type="password" name="password"  required>
+                    <label>Password*</label>
+            </div>
+            <div class="signup-link">
+            Already registered? <a href="{% url 'login' %}">Login</a></div>
+            <div class="field">
+                <input type="submit" value="Generate OTP">
+            </div>
+        </form>
+    </div>
+
+</div>
+{% block content %}
+        
+{% endblock %}
+</body>
+</html>
+
+

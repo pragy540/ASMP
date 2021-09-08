@@ -1,0 +1,1071 @@
+{% comment %} {% extends "base.html" %}
+{% block content %} {% endcomment %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="icon" href="{% static 'img/asf.png' %}" sizes="16x16" type="image/png">
+
+  <link rel="stylesheet" href="{% static 'style.css' %}" />
+  {% comment %} <link rel="stylesheet" href="{% static 'personal_info.css' %}" /> {% endcomment %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+  .grey_card--back {
+		background:#b89989;
+		transform: rotateY(180deg);
+	  }
+
+     .grey_card--front{
+		background: #b89989;
+	  }
+    
+  </style>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Source+Sans+Pro:wght@200&display=swap"
+    rel="stylesheet">
+  <meta charset="utf-8">
+  <title>Alumni Student Mentorship Program | SARC</title>
+</head>
+
+<body style="background-color: #5C9B98 !important;">
+
+  <div class="main" style="margin-top:1rem; margin-left:2rem;color: #190644;">
+            {% comment %} <h1>ASMP</h1> {% endcomment %}
+            <img src="{% static "asmp_logo.png" %}" height='11%' width= '15%'>
+</div>
+
+<div class="mininav">
+  <ul>
+    <li><a href="{% url 'test' %}" style="text-decoration: none; color: inherit;">Profile</a></li>
+    <li><a href="{% url 'profile' %}" style="text-decoration: none; color: inherit;">Mentors</a></li>
+    <li><a href="{% url 'favourite_list' %}" style="text-decoration: none; color: inherit;">Wishlist</a></li>
+    {% if user.is_authenticated %}
+        <li style="background-color:white"><a href="{% url 'logout' %}" style="text-decoration: none; background-color:white;color:#da7c49;">Logout</a></li>
+        {% endif %}
+  </ul>
+</div>
+<h1 class="profhead">
+  Choose Your Mentor
+</h1>
+<div class="profs">
+  <ul>
+  <li id="man">Management</li>
+  <li id="core">Core Engineering</li>
+  <li id="manc">Management Consulting</li>
+  <li id="strat">Strategy Consulting</li>
+   <li id="design">Design</li>
+  <li id="re">Research</li>
+  
+  <li id="other">Other</li>
+  
+ 
+  <li id="it">IT</li>
+  <li id="fin">Finance</li>
+  <li id="al">Analytics</li>
+  <li id="ci">Civil Services</li>
+  
+  </ul>
+</div>
+{% comment %} analytics {% endcomment %}
+<div class="al">
+  <div class="cardare">
+    {% for mentor in mentors_analytics %}
+    {%if mentor.maxmentees == 0 or not mentor.available %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face grey_card--front">
+          <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a  class="wish">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+  
+        </div>
+        <div class="card__face grey_card--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a style="    position: absolute;background-color: #77bbbb;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face card__face--front">
+         <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a href="{% url 'favourite_add' mentor.id %}" class="wish">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+  
+        </div>
+        <div class="card__face card__face--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a href="{% url 'favourite_add' mentor.id %}" style="    position: absolute;background-color: #de1641;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {% endif%}
+    {% endfor %}
+    
+  </div>
+</div>
+
+{% comment %} core Engineering {% endcomment %}
+<div class="core">
+  <div class="cardare">
+    {% for mentor in mentors_core %}
+   {%if mentor.maxmentees == 0 or not mentor.available %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face grey_card--front">
+          <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a  class="wish">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+  
+        </div>
+        <div class="card__face grey_card--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a style="    position: absolute;background-color: #77bbbb;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face card__face--front">
+         <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a href="{% url 'favourite_add' mentor.id %}" class="wish">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+  
+        </div>
+        <div class="card__face card__face--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a href="{% url 'favourite_add' mentor.id %}" style="    position: absolute;background-color: #de1641;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {% endif%}
+    {% endfor %}
+    
+  </div>
+</div>
+
+
+{% comment %} civil services {% endcomment %}
+<div class="ci">
+  <div class="cardare">
+    {% for mentor in mentors_ci %}
+    {%if mentor.maxmentees == 0 or not mentor.available %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face grey_card--front">
+          <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a  class="wish">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+  
+        </div>
+        <div class="card__face grey_card--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a style="    position: absolute;background-color: #77bbbb;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face card__face--front">
+         <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a href="{% url 'favourite_add' mentor.id %}" class="wish">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+  
+        </div>
+        <div class="card__face card__face--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a href="{% url 'favourite_add' mentor.id %}" style="    position: absolute;background-color: #de1641;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {% endif%}
+    {% endfor %}
+    
+  </div>
+</div>
+
+{% comment %} Design {% endcomment %}
+<div class="design">
+  <div class="cardare">
+    {% for mentor in mentors_design %}
+   {%if mentor.maxmentees == 0 or not mentor.available %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face grey_card--front">
+          <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a  class="wish">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+  
+        </div>
+        <div class="card__face grey_card--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a style="    position: absolute;background-color: #77bbbb;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face card__face--front">
+         <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a href="{% url 'favourite_add' mentor.id %}" class="wish">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+  
+        </div>
+        <div class="card__face card__face--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a href="{% url 'favourite_add' mentor.id %}" style="    position: absolute;background-color: #de1641;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {% endif%}
+    {% endfor %}
+    
+  </div>
+</div>
+
+
+{% comment %} Finance {% endcomment %}
+<div class="fin">
+  <div class="cardare">
+    {% for mentor in mentors_fin %}
+   {%if mentor.maxmentees == 0 or not mentor.available %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face grey_card--front">
+          <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a  class="wish">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+  
+        </div>
+        <div class="card__face grey_card--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a style="    position: absolute;background-color: #77bbbb;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face card__face--front">
+         <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a href="{% url 'favourite_add' mentor.id %}" class="wish">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+  
+        </div>
+        <div class="card__face card__face--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a href="{% url 'favourite_add' mentor.id %}" style="    position: absolute;background-color: #de1641;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {% endif%}
+    {% endfor %}
+    
+  </div>
+</div>
+
+
+{% comment %} IT {% endcomment %}
+<div class="it">
+  <div class="cardare">
+    {% for mentor in mentors_it %}
+    {%if mentor.maxmentees == 0 or not mentor.available %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face grey_card--front">
+          <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a  class="wish">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+  
+        </div>
+        <div class="card__face grey_card--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a style="    position: absolute;background-color: #77bbbb;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face card__face--front">
+         <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a href="{% url 'favourite_add' mentor.id %}" class="wish">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+  
+        </div>
+        <div class="card__face card__face--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a href="{% url 'favourite_add' mentor.id %}" style="    position: absolute;background-color: #de1641;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {% endif%}
+    {% endfor %}
+    
+  </div>
+</div>
+
+
+{% comment %} Management and Consulting {% endcomment %}
+<div class="manc">
+  <div class="cardare">
+    {% for mentor in mentors_manc %}
+    {%if mentor.maxmentees == 0 or not mentor.available %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face grey_card--front">
+          <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a  class="wish">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+  
+        </div>
+        <div class="card__face grey_card--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a style="    position: absolute;background-color: #77bbbb;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face card__face--front">
+         <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a href="{% url 'favourite_add' mentor.id %}" class="wish">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+  
+        </div>
+        <div class="card__face card__face--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a href="{% url 'favourite_add' mentor.id %}" style="    position: absolute;background-color: #de1641;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {% endif%}
+    {% endfor %}
+    
+  </div>
+</div>
+
+
+{% comment %} Management {% endcomment %}
+<div class="man">
+  <div class="cardare">
+    {% for mentor in mentors_man %}
+  {%if mentor.maxmentees == 0 or not mentor.available %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face grey_card--front">
+          <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+        
+          <a  class="wish">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+  
+        </div>
+        <div class="card__face grey_card--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a style="    position: absolute;background-color: #77bbbb;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% else %} 
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face card__face--front">
+         <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          <a href="{% url 'favourite_add' mentor.id %}" class="wish">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+  
+        </div>
+        <div class="card__face card__face--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a href="{% url 'favourite_add' mentor.id %}" style="    position: absolute;background-color: #de1641;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+     {% endif%}
+    {% endfor %}
+    
+  </div>
+</div>
+
+
+{% comment %} other {% endcomment %}
+<div class="other">
+  <div class="cardare">
+    {% for mentor in mentors_other %}
+    {%if mentor.maxmentees == 0 or not mentor.available %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face grey_card--front">
+          <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a  class="wish">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+  
+        </div>
+        <div class="card__face grey_card--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a style="    position: absolute;background-color: #77bbbb;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face card__face--front">
+         <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a href="{% url 'favourite_add' mentor.id %}" class="wish">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+  
+        </div>
+        <div class="card__face card__face--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a href="{% url 'favourite_add' mentor.id %}" style="    position: absolute;background-color: #de1641;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {% endif%}
+    {% endfor %}
+    
+  </div>
+</div>
+
+
+
+{% comment %} Research {% endcomment %}
+<div class="re">
+  <div class="cardare">
+    {% for mentor in mentors_re %}
+    {%if mentor.maxmentees == 0 or not mentor.available %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face grey_card--front">
+          <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a  class="wish">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+  
+        </div>
+        <div class="card__face grey_card--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a style="    position: absolute;background-color: #77bbbb;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face card__face--front">
+         <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a href="{% url 'favourite_add' mentor.id %}" class="wish">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+  
+        </div>
+        <div class="card__face card__face--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a href="{% url 'favourite_add' mentor.id %}" style="    position: absolute;background-color: #de1641;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {% endif%}
+    {% endfor %}
+    
+  </div>
+</div>
+
+
+{% comment %} Strategy Consulting {% endcomment %}
+<div class="strat">
+  <div class="cardare">
+    {% for mentor in mentors_strat %}
+    {%if mentor.maxmentees == 0 or not mentor.available %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face grey_card--front">
+          <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a  class="wish">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+  
+        </div>
+        <div class="card__face grey_card--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a style="    position: absolute;background-color: #77bbbb;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -14px; right: 20px;">x</p>
+          </a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="scene scene--card">
+      <div class="cardm">
+        <div class="card__face card__face--front">
+         <p class = "id-mentor" style="border-bottom: white solid 2px;">{{mentor.mentor_id}}</p>
+          <p>{{mentor.designation}}, {{mentor.company}}</p>
+          <p>{{mentor.city}}, {{mentor.country}}</p>
+          <p>{{mentor.degree}} {{mentor.department}} {{mentor.year}}</p>
+          {% comment %} <p></p> {% endcomment %}
+          <a href="{% url 'favourite_add' mentor.id %}" class="wish">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+  
+        </div>
+        <div class="card__face card__face--back">
+          <p>{{mentor.gender}}</p>
+          <p>{{mentor.discp}}</p>
+          <a href="{% url 'favourite_add' mentor.id %}" style="    position: absolute;background-color: #de1641;
+  color: #da7c49;
+  width: 60px;
+  height: 60px;
+  font-size: 50px;
+  border-radius: 9999px;
+  font-weight: 300;
+  top: -20px;
+  right: -20px;">
+            <p style="position: absolute; top: -12px; right: 14px;">+</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {% endif%}
+    {% endfor %}
+    
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="{% static 'app.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+    integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+    crossorigin="anonymous"></script>
+    <script>
+      //         var card = document.querySelector('.card');
+      // card.addEventListener( 'click', function() {
+      //   card.classList.toggle('is-flipped');
+      // });
+      $(".cardm").click(function () {
+        $(this).toggleClass("is-flipped");
+        $(this).children(".card__face--front").children(".wish").toggleClass("flipped");
+      });
+      $("a").click(
+        function (event) {
+          event.stopPropagation();
+        }
+      );
+    </script>
+    <script>
+   $(document).ready(function(){
+	$(".al").addClass('invisible');
+	$(".core").addClass('invisible');
+	$(".ci").addClass('invisible');
+	$(".design").addClass('invisible');
+	$(".fin").addClass('invisible');
+	$(".it").addClass('invisible');
+	$(".manc").addClass('invisible');
+	$(".man").removeClass('invisible');
+	$(".re").addClass('invisible');
+	$(".strat").addClass('invisible');
+	$(".other").addClass('invisible');
+});
+$("#al").click(function(){
+	$(".al").removeClass('invisible');
+	$(".core").addClass('invisible');
+	$(".ci").addClass('invisible');
+	$(".design").addClass('invisible');
+	$(".fin").addClass('invisible');
+	$(".it").addClass('invisible');
+	$(".manc").addClass('invisible');
+	$(".man").addClass('invisible');
+	$(".re").addClass('invisible');
+	$(".strat").addClass('invisible');
+	$(".other").addClass('invisible');
+})
+$("#core").click(function(){
+	$(".al").addClass('invisible');
+	$(".core").removeClass('invisible');
+	$(".ci").addClass('invisible');
+	$(".design").addClass('invisible');
+	$(".fin").addClass('invisible');
+	$(".it").addClass('invisible');
+	$(".manc").addClass('invisible');
+	$(".man").addClass('invisible');
+	$(".re").addClass('invisible');
+	$(".strat").addClass('invisible');
+	$(".other").addClass('invisible');
+})
+$("#ci").click(function(){
+	$(".al").addClass('invisible');
+	$(".core").addClass('invisible');
+	$(".ci").removeClass('invisible');
+	$(".design").addClass('invisible');
+	$(".fin").addClass('invisible');
+	$(".it").addClass('invisible');
+	$(".manc").addClass('invisible');
+	$(".man").addClass('invisible');
+	$(".re").addClass('invisible');
+	$(".strat").addClass('invisible');
+	$(".other").addClass('invisible');
+})
+$("#design").click(function(){
+	$(".al").addClass('invisible');
+	$(".core").addClass('invisible');
+	$(".ci").addClass('invisible');
+	$(".design").removeClass('invisible');
+	$(".fin").addClass('invisible');
+	$(".it").addClass('invisible');
+	$(".manc").addClass('invisible');
+	$(".man").addClass('invisible');
+	$(".re").addClass('invisible');
+	$(".strat").addClass('invisible');
+	$(".other").addClass('invisible');
+})
+$("#fin").click(function(){
+	$(".al").addClass('invisible');
+	$(".core").addClass('invisible');
+	$(".ci").addClass('invisible');
+	$(".design").addClass('invisible');
+	$(".fin").removeClass('invisible');
+	$(".it").addClass('invisible');
+	$(".manc").addClass('invisible');
+	$(".man").addClass('invisible');
+	$(".re").addClass('invisible');
+	$(".strat").addClass('invisible');
+	$(".other").addClass('invisible');
+})
+$("#it").click(function(){
+	$(".al").addClass('invisible');
+	$(".core").addClass('invisible');
+	$(".ci").addClass('invisible');
+	$(".design").addClass('invisible');
+	$(".fin").addClass('invisible');
+	$(".it").removeClass('invisible');
+	$(".manc").addClass('invisible');
+	$(".man").addClass('invisible');
+	$(".re").addClass('invisible');
+	$(".strat").addClass('invisible');
+	$(".other").addClass('invisible');
+})
+$("#manc").click(function(){
+	$(".al").addClass('invisible');
+	$(".core").addClass('invisible');
+	$(".ci").addClass('invisible');
+	$(".design").addClass('invisible');
+	$(".fin").addClass('invisible');
+	$(".it").addClass('invisible');
+	$(".manc").removeClass('invisible');
+	$(".man").addClass('invisible');
+	$(".re").addClass('invisible');
+	$(".strat").addClass('invisible');
+	$(".other").addClass('invisible');
+})
+$("#man").click(function(){
+	$(".al").addClass('invisible');
+	$(".core").addClass('invisible');
+	$(".ci").addClass('invisible');
+	$(".design").addClass('invisible');
+	$(".fin").addClass('invisible');
+	$(".it").addClass('invisible');
+	$(".manc").addClass('invisible');
+	$(".man").removeClass('invisible');
+	$(".re").addClass('invisible');
+	$(".strat").addClass('invisible');
+	$(".other").addClass('invisible');
+})
+$("#re").click(function(){
+	$(".al").addClass('invisible');
+	$(".core").addClass('invisible');
+	$(".ci").addClass('invisible');
+	$(".design").addClass('invisible');
+	$(".fin").addClass('invisible');
+	$(".it").addClass('invisible');
+	$(".manc").addClass('invisible');
+	$(".man").addClass('invisible');
+	$(".re").removeClass('invisible');
+	$(".strat").addClass('invisible');
+	$(".other").addClass('invisible');
+})
+$("#strat").click(function(){
+	$(".al").addClass('invisible');
+	$(".core").addClass('invisible');
+	$(".ci").addClass('invisible');
+	$(".design").addClass('invisible');
+	$(".fin").addClass('invisible');
+	$(".it").addClass('invisible');
+	$(".manc").addClass('invisible');
+	$(".man").addClass('invisible');
+	$(".re").addClass('invisible');
+	$(".strat").removeClass('invisible');
+	$(".other").addClass('invisible');
+})
+$("#other").click(function(){
+	$(".al").addClass('invisible');
+	$(".core").addClass('invisible');
+	$(".ci").addClass('invisible');
+	$(".design").addClass('invisible');
+	$(".fin").addClass('invisible');
+	$(".it").addClass('invisible');
+	$(".manc").addClass('invisible');
+	$(".man").addClass('invisible');
+	$(".re").addClass('invisible');
+	$(".strat").addClass('invisible');
+	$(".other").removeClass('invisible');
+})
+	
+    </script>
+</body>
+
+</html>
+
+{% block content %}
+
+{% endblock %}

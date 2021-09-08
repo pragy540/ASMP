@@ -1,0 +1,382 @@
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        																									*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
+.clearfix:before, .clearfix:after { display: table; content: ''; }
+.clearfix:after { clear: both; }
+:root {
+	--orange: #FA7921;
+	--black: #02020A;
+	--grey: #8DA1B9;
+	--green: #C8FFBE;
+	--yellow: #EEF5DB;
+}
+body {
+	color: var(--orange);
+	font-weight: 400;
+	font-size: 1em;
+	font-family: 'Raleway', Arial, sans-serif;
+}
+
+#svgimg{
+	height: 200px;
+	width: auto;
+
+}
+#svgimg{
+	margin-top: 140px;
+}
+#event{
+	position: absolute;
+	height: 200px;
+	width: auto;
+	margin-top: 0px;
+}
+#cloud{
+
+	position: relative;
+	height: 100px;
+	width: auto;
+	margin-top: 40px;
+}
+#MIGD{
+	position: absolute;
+	height: 200px;
+	width: auto;
+	margin-top: 0px;
+}
+#cloud2{
+
+	position: relative;
+	height: 100px;
+	width: auto;
+	margin-top: 40px;
+}
+
+
+/* Demo ad design */
+body #cdawrap {
+	background: none;
+	top: 50px;
+	border: none;
+}
+
+body #cdawrap a {
+	color: var(--orange)!important;
+}
+
+body #cda-remove {
+	color: var(--orange)f;
+}
+
+.grid {
+	position: relative;
+	clear: both;
+	margin: 0 auto;
+	padding: 1em 0 4em;
+	max-width: 1000px;
+	list-style: none;
+	text-align: center;
+}
+
+/* Common style */
+.grid figure {
+	position: relative;
+	float: left;
+	overflow: hidden;
+	margin: 10px 1%;
+	/* background: #3085a3; */
+	text-align: center;
+
+	height: 300px!important;
+	width: 250px!important;
+}
+.grid figure div{
+	height: 250px!important;
+	width: 250px!important;
+	border: 2px solid black;
+	border-radius: 125px;
+}
+.grid figure div img {
+	position: relative;
+	display: block;
+	opacity: 0.8;
+	height: 220px!important;
+	width: 220px!important;
+	width: auto;
+	border-radius: 110px;
+	top: 13px;
+    left: 13px;
+}
+
+.grid figure figcaption {
+	padding: 2em;
+	color: var(--orange);
+	text-transform: uppercase;
+	font-size: 1.25em;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.grid figure figcaption::before,
+.grid figure figcaption::after {
+	pointer-events: none;
+}
+
+.grid figure figcaption,
+.grid figure figcaption > a {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+h1{
+	font-size: 50px;
+	margin-left: 5%;
+	font-weight: bolder;
+}
+/* Anchor will cover the whole item by default */
+/* For some effects it will show as a button */
+.grid figure figcaption > a {
+	z-index: 1000;
+	text-indent: 200%;
+	white-space: nowrap;
+	font-size: 0;
+	opacity: 0;
+}
+
+.grid figure h2 {
+	word-spacing: -0.15em;
+	font-weight: 300;
+}
+
+*.grid figure h2 span {
+	font-weight: 800;
+}
+
+.grid figure h2,
+.grid figure p {
+	margin: 0;
+}
+
+.grid figure p {
+	letter-spacing: 1px;
+	font-size: 68.5%;
+}
+
+/* Individual effects */
+
+/*-----------------*/
+/***** Apollo *****/
+/*-----------------*/
+
+
+figure.effect-apollo div img {
+	opacity: 0.95;
+	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+	-webkit-transform: scale3d(1.05,1.05,1);
+	transform: scale3d(1.05,1.05,1);
+}
+
+figure.effect-apollo figcaption::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(250, 121, 33, 0.4);
+	content: '';
+	-webkit-transition: -webkit-transform 0.6s;
+	transition: transform 0.6s;
+	-webkit-transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,-100%,0);
+	transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,-100%,0);
+	
+}
+.heading_back{
+	display: inline;
+	width: 100px;
+    position: relative;
+    bottom: 80px;
+    left: 3%;
+}
+figure.effect-apollo p {
+	position: absolute;
+	/* right: 50; */
+	bottom: -10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	max-width: 170px;
+	padding-left: 0px;
+	max-height: 50px;
+	text-align: center;
+	opacity: 0;
+	-webkit-transition: opacity 0.35s;
+	transition: opacity 0.35s;
+}
+
+
+figure.effect-apollo:hover div img {
+	opacity: 0.6;
+	-webkit-transform: scale3d(1,1,1);
+	transform: scale3d(1,1,1);
+}
+
+figure.effect-apollo:hover figcaption::before {
+	-webkit-transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,100%,0);
+	transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,100%,0);
+}
+
+figure.effect-apollo:hover p {
+	opacity: 1;
+	-webkit-transition-delay: 0.1s;
+	transition-delay: 0.1s;
+}
+
+/* Media queries */
+@media screen and (max-width: 50em) {
+	.content {
+		padding: 0 10px;
+		text-align: center;
+	}
+	.grid figure {
+		display: inline-block;
+		float: none;
+		margin: 10px auto;
+		width: 100%;
+	}
+}
+
+#name{
+	text-align: left;
+	font-size: 70%;
+	margin:14px;
+}
+#contact{
+	text-align: left;
+	font-size: 40%;
+	margin:14px;
+}
+p{
+	text-align: left;
+}
+
+#link{
+	max-height: 20px;
+	max-width: 20px;
+}
+#fb{
+	max-width: 20px;
+	max-height:20px;
+}
+h2{
+	margin-top: 20px;
+	margin-right: 5px;
+	padding-right: 10px;
+	margin-left: 40px;
+	font-style: sans-serif; 
+	font-size:10vw;
+}
+
+.heading1{
+  margin-top: 10px;
+  margin-left: 70px;
+  font-family: Avenir_Black;
+
+}
+.container1{
+  width:50%;
+}
+.BTIc{
+	display: none;
+}
+.Eventsc{
+	font-size: 1.7em;
+	margin-left: 6%;
+}
+.mob-view{
+	display: none;
+}
+
+.MIGDc{
+	display: none;
+}
+ .mobv2 {
+    display: block;
+    top: 32%;
+    
+    font-family: Avenir_Black;
+    font-size: 34px;
+    margin-top: 126px;
+    margin-left: 14%;
+}
+@media only screen and (max-width:1000px){
+	#cloud2{
+		display: none!important;
+	}
+	#cloud{
+		display:none;
+	}
+	#svgimg1{
+		display: none;
+	}
+	}
+
+@media only screen and (max-width:994px){
+	#cloud{
+		display:none;
+	}
+	.cloud2{
+		display: none;
+	}
+  
+}
+@media only screen and (max-width:968px){
+	.svgimge{
+		margin-top: 69px;
+    margin-left: -187px;
+    margin-right: 0px;
+	}
+
+}
+@media only screen and (max-width:746px){
+	.svgimge {
+    margin-top: 69px;
+    margin-left: -104px;
+    margin-right: 0px;
+}
+.svgimgl{
+	margin-top: 60px;margin-left: 47px;
+}
+
+}
+@media only screen and (max-width:890px){
+  .figure{
+    margin: 25px auto;
+  }
+}
+@media only screen and (max-width:572px){
+
+	.svgimge{
+		display: none;
+	}
+	.svgimgl{
+		display: none;
+
+	}
+	.MIGD{
+		display: none;
+	}
+	
+	.Eventsc{
+		display: none !important;
+	}
+	.mob-view{
+		display: block;
+		font-family: Avenir_Black;
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 25px;
+	}
+}                                                                                                                                                                                    

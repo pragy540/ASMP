@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="sliderContainer">
+    <ul style="list-style-type: none;">
+    <li>
+      <div class="slider single-item">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </li>
+    <li class="hmm">
+    <div class="progressBarContainer">
+      <div style="margin: 40px; position: relative;">
+        <h3>Slide 1</h3>
+        <span data-slick-index="0" class="progressBar" style="position: absolute; top: 0%; left: -10px;"></span>
+      </div>
+      <div style="margin: 40px; position: relative;">
+        <h3>Slide 2</h3>
+        <span data-slick-index="1" class="progressBar" style="position: absolute; top: 0%; left: -10px;"></span>
+      </div>
+      <div style="margin: 40px; position: relative;">
+        <h3>Slide 3</h3>
+        <span data-slick-index="2" class="progressBar" style="position: absolute; top: 0%; left: -10px;"></span>
+      </div>
+    </div>
+    </li>
+    </ul>
+  </div>
+  {% endblock %}

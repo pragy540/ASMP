@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'formstyle.css' %}"/>
+</head>
+<body>
+<div class="wrapper">
+    <div class="form">
+        <h3 class="title">Enter OTP</h3>
+        
+
+        <form method="post">
+            {% if message %}
+                <div class="alert alert-{{class}}">
+                    {{message}}
+                </div>
+            {% endif %}
+            {% csrf_token %}
+            <div class="field">
+                <input type="text" placeholder="" name="otp" id="">
+            </div>
+            <div class="field">
+                <input type="submit" value="Login">
+            </div>
+            <p style="text-align : center"> Check your webmail for the OTP</p>
+        </form>
+    </div>
+
+</div>
+
+{% block content %}
+        
+{% endblock %}
+</body>
+</html>

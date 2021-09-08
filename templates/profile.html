@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style="margin: 0.8rem">Your Profile</h1>
+<div class="profnav">
+    <ul>
+      <li><a href="#page1">Update Personal<br>Information</a>
+      <li><a href="#page2">Mentor Selection</a>
+      <li><a href="#page3">Wishlist</a>
+    </ul>
+</div>
+    <div class="content">
+    
+      <div id="page1" class="profind"><!-- personal info -->
+        <p>Personal Info Form</p>
+      </div><!-- /page1 -->
+      
+      <div id="page2" class="profind"><!-- Mentor Display -->
+        <p>Mentor Cards</p>
+        <div class="cardare">
+        {% for mentor in mentors %}
+        <div class="scene scene--card">
+          <div class="cardm">
+            <div class="card__face card__face--front">
+    <p>{{mentor.hostel}}</p>
+    <p>{{mentor.discp}}</p>
+    <p>{{mentor.company}}</p>
+    <a href="{% url 'favourite_add' mentor.id %}" style="    position: absolute;
+    bottom: 20px;
+    left: 115px;">Wishlist</a>
+
+            </div>
+            <div class="card__face card__face--back">
+              <p>{{mentor.designation}}</p>
+              <p>{{mentor.year}}</p>
+              <p>{{mentor.degree}}</p>
+              <p>{{mentor.city}}</p>
+              <p>{{mentor.department}}</p>
+              <a href="{% url 'favourite_add' mentor.id %}" style="    position: absolute;
+              bottom: 20px;
+              left: 115px;">Wishlist</a>
+            </div>
+        </div>
+      </div>
+      {% endfor %}
+      <script>
+//         var card = document.querySelector('.card');
+// card.addEventListener( 'click', function() {
+//   card.classList.toggle('is-flipped');
+// });
+$(".cardm").click(function(){
+  $(this).toggleClass("is-flipped");
+});
+      </script>
+      </div>
+      
+      <!-- /page2 -->
+      </div>
+      <div id="page3" class="profind">
+        <p>Your selected mentors</p>
+        <div class="wishmentors">
+          <!-- <form action="update" method="post">
+            {% csrf_token %}
+          <ul>
+            {% for mentor in new %}
+            <li>          
+              <p>{{mentor.hostel}}</p>
+              <p>{{mentor.discp}}</p>
+              <p>{{mentor.company}}</p>
+              <p>{{mentor.designation}}</p>
+              <p>{{mentor.year}}</p>
+              <p>{{mentor.degree}}</p>
+              <p>{{mentor.city}}</p>
+              <p>{{mentor.department}}</p>
+              <a href="{% url 'favourite_add' mentor.id %}">Remove</a>
+              <select name="{{mentor.id}} preference" size="1">
+                  <option value="1">0</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+              </select>
+              <input hidden name="{{mentor.id}}" value="{{mentor.id}}">
+            </li>
+              {% endfor %}
+          </ul>
+          <input type="submit">
+          </form> -->
+        </div>
+      </div><!-- /page3 -->
+    
+    </div>
+    {% endblock %}
